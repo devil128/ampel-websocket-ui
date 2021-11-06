@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ampel-ui-endpoint
+  labels:
+    app: ampel-ui-endpoint
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: ampel-ui-endpoint
+      labels:
+        app: ampel-ui-endpoint
+    spec:
+      containers:
+        - name: ampel-ui-service
+          image: registry.projectdw.de/ampel-websocket-ui
+          imagePullPolicy: Always
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred
+  selector:
+    matchLabels:
+      app: ampel-ui-endpoint
+
