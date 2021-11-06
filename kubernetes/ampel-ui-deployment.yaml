@@ -16,6 +16,7 @@ spec:
         - name: ampel-ui-service
           image: registry.projectdw.de/ampel-websocket-ui
           imagePullPolicy: Always
+
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred
