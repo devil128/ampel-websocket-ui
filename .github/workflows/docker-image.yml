@@ -22,7 +22,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build the Docker image and push to private registry
         run: |
-          docker build . --file Dockerfile --tag registry.projectdw.de/ampel-websocket-ui
+          docker build . --file Dockerfile --tag registry.projectdw.de/ampel-graqhql-website
           docker push registry.projectdw.de/ampel-websocket-ui
 
 

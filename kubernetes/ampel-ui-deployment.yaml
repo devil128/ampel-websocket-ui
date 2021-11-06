@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ampel-ui-service
-          image: registry.projectdw.de/ampel-websocket-ui
+          image: registry.projectdw.de/ampel-graqhql-website
           imagePullPolicy: Always
 
       restartPolicy: Always
