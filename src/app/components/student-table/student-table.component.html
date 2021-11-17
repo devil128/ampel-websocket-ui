@@ -1,0 +1,55 @@
+<mat-card>
+  <div class="flex">
+    <app-date-timepicker></app-date-timepicker>
+    <app-date-timepicker></app-date-timepicker>
+  </div>
+
+  <table mat-table [dataSource]="students" class="mat-elevation-z2 full-size">
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let student"> {{student.username}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="place">
+      <th mat-header-cell *matHeaderCellDef>Sitzplatz</th>
+      <td mat-cell *matCellDef="let student"> {{student.place}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="isFailed">
+      <th mat-header-cell *matHeaderCellDef>Online in der Zeit</th>
+      <td mat-cell *matCellDef="let student">
+
+
+        <mat-chip-list aria-label="Status">
+          <mat-chip
+                    [class.mat-chip-danger]="student.isFailed" [class.mat-chip-sucess]="!student.isFailed">
+            {{student.isFailed ? 'Durchgefallen' : 'Nicht durchgefallen'}}
+          </mat-chip>
+        </mat-chip-list>
+
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="isComplete">
+      <th mat-header-cell *matHeaderCellDef>Vollständige Logs:</th>
+      <td mat-cell *matCellDef="let student">
+        <mat-chip-list aria-label="Status">
+          <mat-chip
+                    [class.mat-chip-danger]="!student.isComplete" [class.mat-chip-sucess]="student.isComplete">
+            {{student.isComplete ? 'Vollständig' : 'Nicht vollständig'}}
+          </mat-chip>
+        </mat-chip-list>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="maxTimeBetweenLogs">
+      <th mat-header-cell *matHeaderCellDef>Max Time</th>
+      <td mat-cell *matCellDef="let student"> {{student.maxTimeBetweenLogs}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="click($event, row)"></tr>
+  </table>
+</mat-card>

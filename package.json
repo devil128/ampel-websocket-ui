@@ -15,6 +15,7 @@
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
+    "@angular/fire": "^7.1.1",
     "@angular/forms": "~12.2.0",
     "@angular/material": "^12.2.12",
     "@angular/platform-browser": "~12.2.0",
@@ -22,7 +23,10 @@
     "@angular/router": "~12.2.0",
     "@apollo/client": "^3.0.0",
     "apollo-angular": "^2.6.0",
+    "chart.js": "^3.6.0",
+    "firebase": "^9.4.0",
     "graphql": "^15.0.0",
+    "ng2-charts": "^2.4.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -39,6 +43,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "ng2-charts-schematics": "^0.1.7",
     "typescript": "~4.3.5"
   }
 }

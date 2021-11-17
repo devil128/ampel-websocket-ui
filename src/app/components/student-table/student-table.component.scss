@@ -1,0 +1,18 @@
+.full-size{
+  width: 100%;
+}
+.flex{
+  display: flex;
+  column-gap: 1em;
+  row-gap: 1em;
+  flex-wrap: wrap;
+}
+
+.mat-chip-danger{
+  background-color: red !important;
+  color: white !important;
+}
+.mat-chip-sucess{
+  background-color: red !important;
+  color: white !important;
+}
