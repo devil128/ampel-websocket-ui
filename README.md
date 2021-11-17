@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/devil128/ampel-websocket-ui/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/devil128/ampel-websocket-ui/actions/workflows/docker-image.yml)
+
 # AmpelGraphqlWebsite
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.13.
