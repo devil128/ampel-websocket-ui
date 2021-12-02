@@ -1,1 +1,53 @@
-<p>student-information works!</p>
+<mat-card>
+  <mat-card-content>
+    <h4 class="mat-h5">{{user}} {{place}}</h4>
+
+    <h5 class="mat-h5">Active Networks</h5>
+
+    <mat-list>
+      <ng-container *ngFor="let network of student.activeNetworks">
+        <mat-list-item> {{network}} </mat-list-item>
+      </ng-container>
+    </mat-list>
+    <mat-paginator [length]="student.logCount"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]"
+                   (page)="pageUpdate($event)"
+                   aria-label="Select page">
+    </mat-paginator>
+    <table mat-table [dataSource]="logs" class="mat-elevation-z10 full-size">
+      <ng-container matColumnDef="Uhrzeit">
+        <th mat-header-cell *matHeaderCellDef>Uhrzeit</th>
+        <td mat-cell *matCellDef="let log"> {{(log.timestamp)  | date: 'MM-dd-yy hh:mm:ss'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Erfolg">
+        <th mat-header-cell *matHeaderCellDef>Ping Erfolg</th>
+        <td mat-cell *matCellDef="let log">
+          <mat-chip-list aria-label="Erfolg">
+            <mat-chip
+              [ngClass]="{'mat-chip-danger': log.success, 'mat-chip-success': !log.success}">
+              {{log.success ? 'Internet' : 'Kein Internet'}}
+            </mat-chip>
+          </mat-chip-list>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Anzahl der Netzwerke">
+        <th mat-header-cell *matHeaderCellDef>Anzahl der aktiven Netzwerke</th>
+        <td mat-cell *matCellDef="let log">
+          {{countNetworks(log)}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Aktive Netzwerke">
+        <th mat-header-cell *matHeaderCellDef>aktive Netzwerke</th>
+        <td mat-cell *matCellDef="let log">
+          {{activeNetworksOfLog(log)}}
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+  </mat-card-content>
+</mat-card>

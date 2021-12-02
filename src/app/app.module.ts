@@ -24,6 +24,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { AppRoutingModule } from './app-routing.module';
 import { StudentInformationComponent } from './components/student-information/student-information.component';
 import {MatChipsModule} from "@angular/material/chips";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -33,31 +34,32 @@ import {MatChipsModule} from "@angular/material/chips";
     DateTimePickerComponent,
     StudentInformationComponent
   ],
-  imports: [
-    BrowserModule,
-    GraphQLModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatListModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSidenavModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatSidenavModule,
-    AppRoutingModule,
-    MatChipsModule,
+    imports: [
+        BrowserModule,
+        GraphQLModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatListModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatSidenavModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatSidenavModule,
+        AppRoutingModule,
+        MatChipsModule,
+        MatPaginatorModule,
 
 
-  ],
+    ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })

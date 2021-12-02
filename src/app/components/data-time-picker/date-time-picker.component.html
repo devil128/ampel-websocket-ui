@@ -3,12 +3,12 @@
     <div class="flex">
       <mat-form-field appearance="fill">
         <mat-label>{{name}}</mat-label>
-        <input matInput [matDatepicker]="picker">
+        <input matInput [matDatepicker]="picker" (dateInput)="onDateChangeEvent($event)">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>Clearable input</mat-label>
+        <mat-label>Uhrzeit</mat-label>
         <input matInput type="text" [(ngModel)]="time">
         <button *ngIf="time" matSuffix mat-icon-button aria-label="Clear" (click)="time=''">
           <mat-icon>close</mat-icon>

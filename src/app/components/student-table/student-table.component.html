@@ -1,7 +1,7 @@
 <mat-card>
   <div class="flex">
-    <app-date-timepicker></app-date-timepicker>
-    <app-date-timepicker></app-date-timepicker>
+    <app-date-timepicker [name]="'Start Datum'" (timestamp)="timeStampUpdate($event,'start')"></app-date-timepicker>
+    <app-date-timepicker [name]="'End Datum'" (timestamp)="timeStampUpdate($event,'end')"></app-date-timepicker>
   </div>
 
   <table mat-table [dataSource]="students" class="mat-elevation-z2 full-size">
@@ -24,7 +24,7 @@
 
         <mat-chip-list aria-label="Status">
           <mat-chip
-                    [class.mat-chip-danger]="student.isFailed" [class.mat-chip-sucess]="!student.isFailed">
+            [ngClass]="{'mat-chip-danger': student.isFailed, 'mat-chip-success': !student.isFailed}">
             {{student.isFailed ? 'Durchgefallen' : 'Nicht durchgefallen'}}
           </mat-chip>
         </mat-chip-list>
@@ -37,8 +37,7 @@
       <th mat-header-cell *matHeaderCellDef>Vollständige Logs:</th>
       <td mat-cell *matCellDef="let student">
         <mat-chip-list aria-label="Status">
-          <mat-chip
-                    [class.mat-chip-danger]="!student.isComplete" [class.mat-chip-sucess]="student.isComplete">
+          <mat-chip [ngClass]="{'mat-chip-danger': !student.isComplete, 'mat-chip-success': student.isComplete}">
             {{student.isComplete ? 'Vollständig' : 'Nicht vollständig'}}
           </mat-chip>
         </mat-chip-list>
@@ -46,8 +45,8 @@
     </ng-container>
 
     <ng-container matColumnDef="maxTimeBetweenLogs">
-      <th mat-header-cell *matHeaderCellDef>Max Time</th>
-      <td mat-cell *matCellDef="let student"> {{student.maxTimeBetweenLogs}} </td>
+      <th mat-header-cell *matHeaderCellDef>Zeit Online</th>
+      <td mat-cell *matCellDef="let student"> {{student.timeOnline}} </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="click($event, row)"></tr>
