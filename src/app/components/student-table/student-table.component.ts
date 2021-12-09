@@ -15,7 +15,7 @@ export class StudentTableComponent implements OnInit {
   students: Array<StudentQuery> = []
 
   constructor(private apollo: Apollo, private dateSelector: DateSelectorService, private router: Router) {
-
+    dateSelector.event.subscribe((update) => this.query());
   }
 
   ngOnInit(): void {
@@ -66,14 +66,6 @@ export class StudentTableComponent implements OnInit {
     this.router.navigate(["/student", row.username, row.place]).catch(e => console.error(e));
   }
 
-  timeStampUpdate(ts: number, type: string) {
-    console.log(ts);
-    if (type === 'start') {
-      this.dateSelector.setFromDate(ts);
-    } else {
-      this.dateSelector.setToDate(ts);
-    }
-    this.query();
-  }
+
 
 }

@@ -16,7 +16,11 @@ spec:
         - name: ampel-ui-service
           image: registry.projectdw.de/ampel-graqhql-website
           imagePullPolicy: Always
-
+          resources:
+            requests:
+              cpu: "0.50"
+            limits:
+              memory: "1Gi"
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred

@@ -4,7 +4,7 @@ import {Apollo, gql} from "apollo-angular";
 import {StudentQuery} from "../../data/StudentQuery";
 import {DateSelectorService} from "../../data/date-selector.service";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
-import {MatTableDataSource} from "@angular/material/table";
+import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {LogInterface} from "../../data/LogInterface";
 
 @Component({
@@ -16,14 +16,20 @@ export class StudentInformationComponent implements OnInit, AfterViewInit {
   user: string = "";
   place: string = "";
   student: any;
+  logCount = 0;
   activeNetworks = []
   logs = new MatTableDataSource<LogInterface>();
   navigationSubscription;
   displayedColumns: string[] = ['Uhrzeit', 'Erfolg', 'Anzahl der Netzwerke', 'Aktive Netzwerke'];
-  @ViewChild(MatPaginator)
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator){
+    this.paginator = mp;
+  }
   paginator: MatPaginator | null = null;
+
   pageSize: number = 10;
   page: number = 0;
+  @ViewChild(MatTable) table: MatTable<any> | null = null;
+
 
   constructor(private activatedRoute: ActivatedRoute, private apollo: Apollo, private dateSelector: DateSelectorService, private router: Router) {
     this.activatedRoute.paramMap.subscribe((param => {
@@ -38,24 +44,26 @@ export class StudentInformationComponent implements OnInit, AfterViewInit {
         this.query();
       }
     });
+    this.dateSelector.event.subscribe((update) => {
+      console.log("update")
+      this.query();
+    });
 
   }
 
   ngAfterViewInit(): void {
-    this.logs.paginator = this.paginator;
+    //this.logs.paginator = this.paginator;
+    this.query();
   }
 
-  query() {
+  async query() {
     this.apollo
     .watchQuery({
       query: gql`
         {
           user(username: "${this.user}", place: "${this.place}",from: "${this.dateSelector.getFromDate().getTime()}", to:"${this.dateSelector.getToDate().getTime()}"){
-            username,
-            place,
             isFailed,
             isComplete,
-            maxTimeBetweenLogs,
             logCount,
             activeNetworks
           }
@@ -63,9 +71,11 @@ export class StudentInformationComponent implements OnInit, AfterViewInit {
       `,
     })
     .valueChanges.subscribe((result: any) => {
-      console.dir(result);
       this.student = result.data.user;
+      this.logCount = this.student.logCount;
       console.log(result.data.user);
+
+      //this.table?.renderRows();
     });
     this.apollo
     .watchQuery({
@@ -78,8 +88,8 @@ export class StudentInformationComponent implements OnInit, AfterViewInit {
       `,
     })
     .valueChanges.subscribe((result: any) => {
-      console.dir(result);
-      this.logs = result.data.logs;
+      this.logs.data = result.data.logs;
+      //this.table?.renderRows();
     });
 
   }
@@ -96,8 +106,8 @@ export class StudentInformationComponent implements OnInit, AfterViewInit {
 
   countNetworks(log: LogInterface): number {
     let sum = 0;
-    for(let network of log.networks){
-      if(network.online)
+    for (let network of log.networks) {
+      if (network.online)
         sum += 1;
     }
     return sum;
@@ -105,8 +115,8 @@ export class StudentInformationComponent implements OnInit, AfterViewInit {
 
   activeNetworksOfLog(log: LogInterface): string {
     let result = [];
-    for(let network of log.networks){
-      if(network.online)
+    for (let network of log.networks) {
+      if (network.online)
         result.push(network.network);
     }
     return result.toString();

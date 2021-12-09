@@ -32,9 +32,13 @@
 
         </mat-toolbar>
       </mat-drawer>
-
+      <mat-card>
+      <div class="flex">
+        <app-date-timepicker [name]="'Start Datum'" (timestamp)="timeStampUpdate($event,'start')"></app-date-timepicker>
+        <app-date-timepicker [name]="'End Datum'" (timestamp)="timeStampUpdate($event,'end')"></app-date-timepicker>
+      </div>
       <router-outlet></router-outlet>
-
+      </mat-card>
     </mat-drawer-container>
 
   </div>

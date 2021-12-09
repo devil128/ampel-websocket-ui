@@ -97,3 +97,9 @@
   font-size: 3em;
 
 }
+.flex{
+  display: flex;
+  column-gap: 1em;
+  row-gap: 1em;
+  flex-wrap: wrap;
+}

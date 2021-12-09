@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-
+import { EventEmitter } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
 export class DateSelectorService {
   from: number = -1;
   to: number = -1;
-
+  event = new EventEmitter<string>();
   constructor() {
   }
 
@@ -14,6 +14,7 @@ export class DateSelectorService {
     if (this.from == -1) {
       return new Date(1);
     }
+
     return new Date(this.from / 1000);
   }
 
@@ -26,9 +27,11 @@ export class DateSelectorService {
 
   public setFromDate(millis: number) {
     this.from = millis;
+    this.event.emit("update");
   }
 
   public setToDate(millis: number) {
     this.to = millis;
+    this.event.emit("update");
   }
 }

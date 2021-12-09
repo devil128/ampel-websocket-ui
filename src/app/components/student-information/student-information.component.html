@@ -1,9 +1,15 @@
 <mat-card>
   <mat-card-content>
-    <h4 class="mat-h5">{{user}} {{place}}</h4>
-
-    <h5 class="mat-h5">Active Networks</h5>
-
+    <h1 class="mat-h5">{{user}} {{place}}</h1>
+    <div class="flex">
+      <ng-container *ngIf="student != null">
+      <button mat-raised-button color="warn" *ngIf="student.isFailed" >Durchgefallen</button>
+      <button mat-raised-button color="primary" *ngIf="!student.isFailed" >nicht Durchgefallen</button>
+      <button mat-raised-button color="warn" *ngIf="!student.isComplete" >nicht Vollständig</button>
+      <button mat-raised-button color="primary" *ngIf="student.isComplete" >Vollständig</button>
+      </ng-container>
+    </div>
+    <h3 class="mat-h5">Active Networks</h3>
     <mat-list>
       <ng-container *ngFor="let network of student.activeNetworks">
         <mat-list-item> {{network}} </mat-list-item>
