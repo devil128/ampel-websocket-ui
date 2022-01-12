@@ -2,6 +2,11 @@
 
 # AmpelGraphqlWebsite
 
+## Frontend
+Enthält Source Code für Ampel UI Frontend. Für Development Zwecke kann der Code lokal gestartet und getestet werden. Für das deployment wird mithilfe von Github CI 
+ein Dockerimage aus der Dockerfile erstellt. Die Dockerfile wird daraufhin in den Kubernetes Cluster deployt. Hierfür werden die Files aus dem kubernetes Ordner genutzt.
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.13.
 
 ## Development server
@@ -16,14 +21,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## CI / CD
+Nach einem Deployment wird automatisch eine Instanz dieser App generiert und unter der URL ``ampel-tracker.projectdw.de`` verfügbar gemacht.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## GraphQL 
+Um den GraphQL Endpoint zu ändern muss in der File ``graphql.module.ts`` die URI geändert werden. Standardmäßig ist die URI ``https://ampel.projectdw.de/graphql`` definiert.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
