@@ -31,7 +31,6 @@ jobs:
         with:
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
-
       - name: Deploy to kubernetes
         run: |
           kubectl delete -f kubernetes/ampel-ui-deployment.yaml
