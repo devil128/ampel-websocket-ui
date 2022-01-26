@@ -33,9 +33,8 @@ jobs:
 
       - name: Deploy to kubernetes
         run: |
-          kubectl delete -f kubernetes/ampel-ui-deployment.yaml
-          kubectl delete -f kubernetes/ampel-ui-ingress.yaml
-          kubectl delete -f kubernetes/ampel-ui-service.yaml
           kubectl apply -f kubernetes/ampel-ui-deployment.yaml
           kubectl apply -f kubernetes/ampel-ui-ingress.yaml
           kubectl apply -f kubernetes/ampel-ui-service.yaml
+          kubectl rollout restart deployment ampel-ui-endpoint
+          
