@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ampel-ui-endpoint
+  name: vsys-ui-angular
   labels:
-    app: ampel-ui-endpoint
+    app: vsys-ui-angular
 spec:
   replicas: 1
   template:
     metadata:
-      name: ampel-ui-endpoint
+      name: vsys-ui-angular
       labels:
-        app: ampel-ui-endpoint
+        app: vsys-ui-angular
     spec:
       containers:
-        - name: ampel-ui-service
-          image: registry.projectdw.de/ampel-graqhql-website
+        - name: vsys-ui-angular
+          image: registry.projectdw.de/vsys-ui-angular
           imagePullPolicy: Always
           resources:
             requests:
@@ -26,5 +26,5 @@ spec:
         - name: regcred
   selector:
     matchLabels:
-      app: ampel-ui-endpoint
+      app: vsys-ui-angular
 
