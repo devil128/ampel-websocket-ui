@@ -3,6 +3,6 @@ import {FirewallRuleRiskEntry} from "./FirewallRuleRiskEntry";
 export interface PenaltyUpdate {
   id: number
   penalty: number
-  timestamp: String
+  timestamp: string
   firewallRuleRiskEntryList: [FirewallRuleRiskEntry]
 }
