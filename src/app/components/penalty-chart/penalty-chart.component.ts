@@ -18,7 +18,14 @@ export class PenaltyChartComponent implements OnInit {
   }
 
   @Input()
-  dataSet: ChartInformation = {
+  set dataSet(dataSet: ChartInformation){
+    this.data = dataSet
+    this.barChartData = {
+      labels: this.data.labels,
+      datasets: this.data.data
+    };
+  }
+  data: ChartInformation = {
     data: [{
       data: [65, 59, 80, 81, 56, 55, 40], label: 'IP 8.8.8.8',
       backgroundColor: '#E91E63', stack: 'a'
@@ -64,8 +71,8 @@ export class PenaltyChartComponent implements OnInit {
   ];
 
   public barChartData: ChartData<'bar'> = {
-    labels: this.dataSet.labels,
-    datasets: this.dataSet.data
+    labels: this.data.labels,
+    datasets: this.data.data
   };
 
   public chartClicked({event, active}: { event?: ChartEvent, active?: {}[] }): void {
