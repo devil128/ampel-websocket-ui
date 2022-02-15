@@ -88,7 +88,8 @@ export class DetailInformationComponent implements OnInit {
       for (const penaltyUpdate of this.penalties) {
         console.dir(penaltyUpdate);
         data.push(penaltyUpdate.penalty);
-        labels.push(penaltyUpdate.timestamp + "")
+        const date = new Date(Number.parseInt(penaltyUpdate.timestamp));
+        labels.push();
       }
     }
     this.dataset = {data: [{data: data, stack: "a", label: "Penalties", backgroundColor: "#E91E63"}], labels: labels};
