@@ -81,12 +81,6 @@ export class RuleTableComponent implements OnInit {
     })
   }
 
-  /*click(event: MouseEvent, row: Query) {
-    console.log(row);
-    console.dir(["/student", row.username, row.place])
-
-    this.router.navigate(["/student", row.username, row.place]).catch(e => console.error(e));
-  }*/
 
 
 }

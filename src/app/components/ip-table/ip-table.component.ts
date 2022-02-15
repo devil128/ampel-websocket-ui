@@ -45,7 +45,6 @@ export class IpTableComponent implements OnInit {
   }
 
   click(event: MouseEvent, row: IpIdent) {
-    console.log(row);
     this.router.navigate(["/ip", row.ip]).catch(e => console.error(e));
   }
 
@@ -63,7 +62,6 @@ export class IpTableComponent implements OnInit {
 
 
   getDate(timestamp: number): string {
-    console.log(timestamp)
     return new Date(timestamp / 1).toLocaleString();
   }
 }

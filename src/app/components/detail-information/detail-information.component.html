@@ -1,19 +1,18 @@
 <div class="charts">
-  <mat-card class="chart">
+  <mat-card id="dailychart">
     <mat-card-title>Tagesablauf</mat-card-title>
-    <mat-card-content class="time">
-      <app-penalty-chart></app-penalty-chart>
+    <mat-card-content>
+      <app-penalty-chart class="time"></app-penalty-chart>
     </mat-card-content>
   </mat-card>
-  <mat-card class="chart">
+  <mat-card id="weeklychart">
     <mat-card-title>Wochenablauf</mat-card-title>
-    <mat-card-content class="time">
-      <app-penalty-chart></app-penalty-chart>
+    <mat-card-content>
+      <app-penalty-chart class="time"></app-penalty-chart>
     </mat-card-content>
   </mat-card>
-
 </div>
-<mat-card>
+<mat-card id="logs">
   <mat-card-title>Intrusion Detection Logs</mat-card-title>
   <mat-card-content>
     <app-intrusion-log></app-intrusion-log>

@@ -49,7 +49,6 @@ export class MacTableComponent implements OnInit {
       })
 
       this.macIdents = macIdentifiers;
-      console.log(result.data.macs);
     });
   }
 
@@ -73,8 +72,6 @@ export class MacTableComponent implements OnInit {
 
 
   getDate(timestamp: number): string {
-    console.log(timestamp)
-    console.log(new Date(timestamp / 1000))
     return new Date(timestamp / 1).toLocaleString();
   }
 }

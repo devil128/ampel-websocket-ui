@@ -14,7 +14,7 @@ import {PacketfilterLog} from "../../data/PacketfilterLog";
 })
 export class PacketfilterLogComponent implements OnInit {
   logs: Array<PacketfilterLog> = [];
-  displayedColumns: Array<string> = ["id", "name", "fwrule", "srcmac", "dstmac"];
+  displayedColumns: Array<string> = ["timestamp","id", "name", "fwrule", "srcmac", "dstmac", "srcip", "dstip"];
 
   mode: string = "ip"
   mac: string = "0";
@@ -65,7 +65,6 @@ export class PacketfilterLogComponent implements OnInit {
   }
 
   async query() {
-
     const page: Page = {from: this.page, size: this.pageSize};
     const settings: Timeframe = {
       mode: this.mode,
@@ -77,7 +76,7 @@ export class PacketfilterLogComponent implements OnInit {
     const data: any = await this.apollo.query({
       query: gql`
         query GETIPLOGS($page: Page, $timeframe: Timeframe){
-          packetLogs(page: $page,timeframe: $timeframe){id,fwrule,sub,action,name,srcmac,created,dstip,dstmac}
+          packetLogs(page: $page,timeframe: $timeframe){timestamp,id,name,fwrule,srcmac,dstmac,srcip,dstip}
           packetLogsCount(timeframe: $timeframe)
         }
       `,
@@ -90,5 +89,8 @@ export class PacketfilterLogComponent implements OnInit {
     this.logs = logs;
   }
 
+  getDate(timestamp: number): string {
+    return new Date(timestamp / 1).toLocaleString();
+  }
 
 }

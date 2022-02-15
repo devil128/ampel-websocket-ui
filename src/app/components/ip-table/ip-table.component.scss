@@ -10,19 +10,23 @@ h1 {
   background-color: red !important;
   color: white !important;
 }
+
 .mat-chip-success{
   background-color: green !important;
   color: white !important;
 }
 
 .mat-row .mat-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
   cursor: pointer;
 }
 
+.mat-header-cell {
+  border-bottom: 1px solid darkgrey;
+}
+
 .mat-row:hover .mat-cell {
-  border-color: currentColor;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
 }
 
 mat-toolbar {

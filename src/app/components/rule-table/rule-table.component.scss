@@ -7,25 +7,25 @@ h1 {
 }
 
 .mat-column-sub {
-  width: 32px;
-  //border-right: 1px solid currentColor;
-  padding-right: 24px;
+  width: 12em;
+  padding-right: 6em;
   text-align: left;
-  font-weight: bolder;
 }
 
 .mat-column-desc, .mat-column-fwrule, .mat-column-penalty {
-  padding-left: 16px;
 }
 
 .mat-row .mat-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
   cursor: pointer;
 }
 
+.mat-header-cell {
+  border-bottom: 1px solid darkgrey;
+}
+
 .mat-row:hover .mat-cell {
-  border-color: currentColor;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
 }
 
 mat-toolbar {

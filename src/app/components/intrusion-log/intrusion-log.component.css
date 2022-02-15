@@ -1,3 +1,13 @@
 table{
   width: 100%;
 }
+
+.mat-header-cell {
+  border-bottom: 1px solid darkgrey;
+}
+
+mat-toolbar {
+  border-top: #606060 solid 0.7px;
+  background-color: #424242;
+}
+

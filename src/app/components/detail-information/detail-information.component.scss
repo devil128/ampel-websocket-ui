@@ -4,11 +4,18 @@
   height: 25vh;
 }
 
-.chart {
-  width: 25vw;
+#weeklychart {
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+
+#dailychart {
+  grid-row-start: 1;
+  grid-column-start: 2;
 }
 
 .charts {
-  display: flex;
-  gap: 2em;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
 }
