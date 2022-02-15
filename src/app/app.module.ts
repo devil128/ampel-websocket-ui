@@ -6,7 +6,7 @@ import {GraphQLModule} from './graphql.module';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
-import {StudentTableComponent} from "./components/student-table/student-table.component";
+import {MacTableComponent} from "./components/mac-table/mac-table.component";
 import {MatListModule} from "@angular/material/list";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
@@ -35,12 +35,13 @@ import {IpTableComponent} from "./components/ip-table/ip-table.component";
 import { DetailInformationComponent } from './components/detail-information/detail-information.component';
 import { IntrusionLogComponent } from './components/intrusion-log/intrusion-log.component';
 import {PacketfilterLogComponent} from "./components/packetfilter-log/packetfilter-log.component";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentTableComponent,
+    MacTableComponent,
     DateTimePickerComponent,
     IpTableComponent,
     PenaltyChartComponent,
@@ -75,6 +76,7 @@ import {PacketfilterLogComponent} from "./components/packetfilter-log/packetfilt
     MatPaginatorModule,
     NgChartsModule,
     MatDialogModule,
+    MatMenuModule,
 
 
   ],

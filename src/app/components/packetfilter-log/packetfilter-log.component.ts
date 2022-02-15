@@ -1,10 +1,8 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {IpLogs} from "../../data/IpLogs";
 import {Apollo, gql} from "apollo-angular";
 import {Page} from "../../data/Page";
 import {Timeframe} from "../../data/Timeframe";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {IpIdent} from "../../data/IpIdent";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatTable} from "@angular/material/table";
 import {PacketfilterLog} from "../../data/PacketfilterLog";
@@ -16,7 +14,7 @@ import {PacketfilterLog} from "../../data/PacketfilterLog";
 })
 export class PacketfilterLogComponent implements OnInit {
   logs: Array<PacketfilterLog> = [];
-  displayedColumns: Array<string> = ["id", "srcIp", "dstIp", "srcmac", "dstmac"];
+  displayedColumns: Array<string> = ["id", "name", "fwrule", "srcmac", "dstmac"];
 
   mode: string = "ip"
   mac: string = "0";

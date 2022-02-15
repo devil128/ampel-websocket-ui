@@ -2,6 +2,9 @@
   width: 80vw;
 }
 
+h1 {
+  padding-top: 0.5em;
+}
 
 .mat-chip-danger{
   background-color: red !important;
@@ -10,4 +13,19 @@
 .mat-chip-success{
   background-color: green !important;
   color: white !important;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+mat-toolbar {
+  border-top: #606060 solid 0.7px;
+  background-color: #424242;
 }

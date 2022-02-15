@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {Query} from "../../data/Query";
 import {FirewallRuleRisk} from "../../data/FirewallRuleRisk";
 import {Apollo, gql} from "apollo-angular";
 
@@ -21,7 +20,7 @@ export class FormDialogComponent implements OnInit {
     if (row.sub === "" && row.fwrule === "") {
       this.isDisabled = false;
       this.sub = "Sub";
-      this.fwRule = "Firewall rule";
+      this.fwRule = "Firewallregel";
     } else {
       this.isDisabled = true;
       this.sub = row.sub;

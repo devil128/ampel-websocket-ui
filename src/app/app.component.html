@@ -3,14 +3,15 @@
   <div class="header">
     <mat-toolbar color="primary">
       <mat-toolbar-row>
-        <h1>Student Tracker</h1>
+        <h1>Firewall Check</h1>
         <span class="menu-spacer"></span>
         <div *ngIf="isScreenSmall" class="mobile-menue">
           <a mat-button (click)="drawer.toggle()"> Menü </a>
         </div>
         <div *ngIf="!isScreenSmall" class="menue">
-          <a mat-button> Studenten </a>
-          <a mat-button> Status </a>
+          <button mat-button routerLink="/"> MAC-Adressen</button>
+          <button mat-button routerLink="/ip"> IP-Adressen</button>
+          <button mat-button routerLink="/rules"> Firewallregeln</button>
         </div>
       </mat-toolbar-row>
     </mat-toolbar>
@@ -20,21 +21,18 @@
   </div>
 
   <div class="main-content">
-    <mat-drawer-container autosize class="full-size">
+    <mat-drawer-container autosize>
       <mat-drawer #drawer mode="over" class="example-sidenav">
         <mat-toolbar color="primary" class="toolbar-mobile">
           <mat-toolbar-row>
-                <button mat-button class="mobile-button"> Students </button>
+            <button mat-button class="mobile-button" routerLink="/"> MAC-Adressen</button>
+            <button mat-button class="mobile-button" routerLink="/ip"> IP-Adressen</button>
+            <button mat-button class="mobile-button" routerLink="/rules"> Firewallregeln</button>
           </mat-toolbar-row>
-          <mat-toolbar-row>
-
-          </mat-toolbar-row>
-
         </mat-toolbar>
       </mat-drawer>
       <mat-card>
-
-      <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
       </mat-card>
     </mat-drawer-container>
 

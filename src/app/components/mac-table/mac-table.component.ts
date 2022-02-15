@@ -1,16 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
-import {StudentQuery} from "../../data/StudentQuery";
 import {DateSelectorService} from "../../data/date-selector.service";
 import {Router} from "@angular/router";
 import {MacIdentifier} from "../../data/MacIdent";
 
 @Component({
-  selector: 'app-student-table',
-  templateUrl: './student-table.component.html',
-  styleUrls: ['./student-table.component.scss']
+  selector: 'app-mac-table',
+  templateUrl: './mac-table.component.html',
+  styleUrls: ['./mac-table.component.scss']
 })
-export class StudentTableComponent implements OnInit {
+export class MacTableComponent implements OnInit {
   title = 'ampel-ui-websocket';
   displayedColumns: string[] = ['id', 'mac', 'lastupdate', 'penaltyscoretoday', 'penaltyscoreweek'];
   macIdents: Array<MacIdentifier> = []

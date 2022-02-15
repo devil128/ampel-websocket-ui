@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 
-import {StudentTableComponent} from "./components/student-table/student-table.component";
+import {MacTableComponent} from "./components/mac-table/mac-table.component";
 
 import {IpTableComponent} from "./components/ip-table/ip-table.component";
 import {PenaltyChartComponent} from "./components/penalty-chart/penalty-chart.component";
@@ -12,7 +12,7 @@ import {DetailInformationComponent} from "./components/detail-information/detail
 
 
 const routes: Routes = [
-  { path: '', component: StudentTableComponent },
+  { path: '', component: MacTableComponent },
   { path: 'mac/:mac', component: DetailInformationComponent },
   { path: 'ip/:ip', component: DetailInformationComponent },
   { path: 'ip', component: IpTableComponent },

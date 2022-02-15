@@ -32,21 +32,30 @@ export class PenaltyChartComponent implements OnInit {
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
     scales: {
-      x: {},
+      x: {
+        ticks: {
+          color: 'white'
+        }
+      },
       y: {
         min: 10,
+        ticks: {
+          color: 'white'
+        }
       }
     },
     plugins: {
       legend: {
         display: true,
+        labels: {
+          color: 'white'
+        },
       },
       datalabels: {
         anchor: 'end',
         align: 'end',
-        color: 'white'
+        color: 'white',
       }
     }
   };

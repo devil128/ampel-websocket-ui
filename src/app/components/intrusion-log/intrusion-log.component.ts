@@ -4,7 +4,6 @@ import {Apollo, gql} from "apollo-angular";
 import {Page} from "../../data/Page";
 import {Timeframe} from "../../data/Timeframe";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {IpIdent} from "../../data/IpIdent";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatTable} from "@angular/material/table";
 
@@ -15,7 +14,7 @@ import {MatTable} from "@angular/material/table";
 })
 export class IntrusionLogComponent implements OnInit {
   logs: Array<IpLogs> = [];
-  displayedColumns: Array<string> = ["id", "srcIp", "dstIp", "srcmac", "dstmac"];
+  displayedColumns: Array<string> = ["id", "name", "fwrule", "srcmac", "dstmac"];
 
   mode: string = "ip"
   mac: string = "0";

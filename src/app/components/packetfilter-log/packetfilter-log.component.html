@@ -1,34 +1,22 @@
 <table mat-table [dataSource]="logs" class="mat-elevation-z8 table">
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="srcIp">
-    <th mat-header-cell *matHeaderCellDef> Name</th>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
   </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="dstIp">
-    <th mat-header-cell *matHeaderCellDef>Firewall Rule</th>
+  <ng-container matColumnDef="fwrule">
+    <th mat-header-cell *matHeaderCellDef>Firewallregel</th>
     <td mat-cell *matCellDef="let element"> {{element.fwrule}} </td>
   </ng-container>
-
-
-  <!-- Symbol Column -->
   <ng-container matColumnDef="srcmac">
     <th mat-header-cell *matHeaderCellDef>Source MAC</th>
     <td mat-cell *matCellDef="let element"> {{element.srcmac}} </td>
   </ng-container>
   <ng-container matColumnDef="dstmac">
-    <th mat-header-cell *matHeaderCellDef>DST MAC</th>
+    <th mat-header-cell *matHeaderCellDef>Dest MAC</th>
     <td mat-cell *matCellDef="let element"> {{element.dstmac}} </td>
   </ng-container>
 

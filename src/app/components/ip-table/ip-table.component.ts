@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
-import {StudentQuery} from "../../data/StudentQuery";
 import {DateSelectorService} from "../../data/date-selector.service";
 import {Router} from "@angular/router";
-import {MacIdentifier} from "../../data/MacIdent";
 import {IpIdent} from "../../data/IpIdent";
 
 @Component({
