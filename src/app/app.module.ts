@@ -33,6 +33,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 
 import {IpTableComponent} from "./components/ip-table/ip-table.component";
 import { DetailInformationComponent } from './components/detail-information/detail-information.component';
+import { IntrusionLogComponent } from './components/intrusion-log/intrusion-log.component';
+import {PacketfilterLogComponent} from "./components/packetfilter-log/packetfilter-log.component";
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { DetailInformationComponent } from './components/detail-information/deta
     RuleTableComponent,
     FormDialogComponent,
     DetailInformationComponent,
+    IntrusionLogComponent,
+    PacketfilterLogComponent
   ],
   imports: [
     BrowserModule,

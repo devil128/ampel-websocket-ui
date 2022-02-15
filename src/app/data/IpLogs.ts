@@ -1,0 +1,21 @@
+export interface IpLogs{
+  id: number,
+  created: number,
+  severity: string,
+  sys: string,
+  sub: string,
+  name: string,
+  action: string,
+  fwrule: string,
+  initf: string,
+  srcmac: string,
+  dstmac: string,
+  srcip: string,
+  dstip: string,
+  proto: string,
+  length: string,
+  tos: string,
+  ttl: string,
+  type: string,
+  code: string
+}

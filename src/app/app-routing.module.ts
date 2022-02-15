@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'mac/:mac', component: DetailInformationComponent },
   { path: 'ip/:ip', component: DetailInformationComponent },
   { path: 'ip', component: IpTableComponent },
+  { path: 'rules', component: RuleTableComponent }
 ];
 
 @NgModule({
