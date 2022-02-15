@@ -1,0 +1,25 @@
+<table mat-table [dataSource]="rules" class="mat-elevation-z2 full-size">
+    <ng-container matColumnDef="sub">
+      <th mat-header-cell *matHeaderCellDef>Sub</th>
+      <td mat-cell *matCellDef="let rule"> {{rule["sub"]}} </td>
+    </ng-container>
+  <ng-container matColumnDef="fwrule">
+    <th mat-header-cell *matHeaderCellDef>Firewall rule</th>
+    <td mat-cell *matCellDef="let rule"> {{rule.fwrule}} </td>
+  </ng-container>
+  <ng-container matColumnDef="desc">
+    <th mat-header-cell *matHeaderCellDef>Description</th>
+    <td mat-cell *matCellDef="let rule"> {{rule.description}} </td>
+  </ng-container>
+  <ng-container matColumnDef="penalty">
+    <th mat-header-cell *matHeaderCellDef>Penalty</th>
+    <td mat-cell *matCellDef="let rule"> {{rule.penalty}} </td>
+  </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="changeEl($event, row)"></tr>
+</table>
+<mat-toolbar class="full-size">
+  <mat-toolbar-row>
+    <button mat-raised-button color="primary" (click)="newEl($event)">Neuer Eintrag</button>
+  </mat-toolbar-row>
+</mat-toolbar>

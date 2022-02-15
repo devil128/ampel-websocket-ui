@@ -1,0 +1,32 @@
+<div *ngIf="isDisabled; else elseBlock"><h2 mat-dialog-title>Eintrag anpassen</h2></div>
+<ng-template #elseBlock><h2 mat-dialog-title>Neuer Eintrag</h2></ng-template>
+<mat-dialog-content class="mat-typography">
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Sub</mat-label>
+      <input matInput [disabled]="isDisabled" [(ngModel)]="sub">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Firewall Regel</mat-label>
+      <input matInput [disabled]="isDisabled" [(ngModel)]="fwRule">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput type="string" placeholder="{{description}}" [(ngModel)]="description"></textarea>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Penalty</mat-label>
+      <input matInput type="number" placeholder="{{penalty}}" [(ngModel)]="penalty">
+    </mat-form-field>
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Abbrechen</button>
+  <button [mat-dialog-close]="true" (click)="sendNewData()" cdkFocusInitial mat-button>Speichern</button>
+</mat-dialog-actions>

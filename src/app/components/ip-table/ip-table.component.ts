@@ -4,16 +4,17 @@ import {StudentQuery} from "../../data/StudentQuery";
 import {DateSelectorService} from "../../data/date-selector.service";
 import {Router} from "@angular/router";
 import {MacIdentifier} from "../../data/MacIdent";
+import {IpIdent} from "../../data/IpIdent";
 
 @Component({
   selector: 'app-student-table',
-  templateUrl: './student-table.component.html',
-  styleUrls: ['./student-table.component.scss']
+  templateUrl: './ip-table.component.html',
+  styleUrls: ['./ip-table.component.scss']
 })
-export class StudentTableComponent implements OnInit {
+export class IpTableComponent implements OnInit {
   title = 'ampel-ui-websocket';
-  displayedColumns: string[] = ['id', 'mac', 'lastupdate', 'penaltyscoretoday', 'penaltyscoreweek'];
-  macIdents: Array<MacIdentifier> = []
+  displayedColumns: string[] = ['id', 'ip', 'lastupdate', 'penaltyscoretoday', 'penaltyscoreweek'];
+  ipIdents: Array<IpIdent> = []
 
   constructor(private apollo: Apollo, private dateSelector: DateSelectorService, private router: Router) {
     dateSelector.event.subscribe((update) => this.query());
@@ -32,7 +33,7 @@ export class StudentTableComponent implements OnInit {
     .watchQuery({
       query: gql`
         {
-          macs(page: {from: 0, size: 100}){id,mac,timeStamp,penalties {
+          ips(page: {from: 0, size: 100}){id,ip,timeStamp,penalties {
             penalty
           }}
         }
@@ -40,31 +41,21 @@ export class StudentTableComponent implements OnInit {
       fetchPolicy: 'network-only'
     })
     .valueChanges.subscribe((result: any) => {
-      let macIdentifiers = [...<MacIdentifier[]>result.data.macs];
-      macIdentifiers.sort((a, b) => {
-        let aLength = 0;
-        if (a && a.penalties && a.penalties.length > 0) {
-          aLength = a.penalties[0].penalty;
-        }
-        return b && b.penalties && b.penalties.length > 0 ? b.penalties[0].penalty - aLength : 0 - aLength;
-      })
-
-      this.macIdents = macIdentifiers;
-      console.log(result.data.macs);
+      let ipIdentData = [...<IpIdent[]>result.data.ips];
+      this.ipIdents = ipIdentData;
     });
   }
 
-  click(event: MouseEvent, row: MacIdentifier) {
+  click(event: MouseEvent, row: IpIdent) {
     console.log(row);
-
-    this.router.navigate(["/mac", row.mac]).catch(e => console.error(e));
+    this.router.navigate(["/ip", row.ip]).catch(e => console.error(e));
   }
 
 
-  getPenaltyScore(macIdent: MacIdentifier, timeframeDays: number): number {
+  getPenaltyScore(ipIdent: IpIdent, timeframeDays: number): number {
     let res = 0;
-    if (macIdent.penalties) {
-      const reverse = macIdent.penalties.reverse();
+    if (ipIdent.penalties) {
+      const reverse = ipIdent.penalties.reverse();
       for (let i = 0; i < timeframeDays && i < reverse.length; i++) {
         res += reverse[i].penalty;
       }
@@ -75,7 +66,6 @@ export class StudentTableComponent implements OnInit {
 
   getDate(timestamp: number): string {
     console.log(timestamp)
-    console.log(new Date(timestamp / 1000))
     return new Date(timestamp / 1).toLocaleString();
   }
 }

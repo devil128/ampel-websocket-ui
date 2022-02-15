@@ -22,9 +22,17 @@ import {DateTimePickerComponent} from "./components/data-time-picker/date-time-p
 
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { AppRoutingModule } from './app-routing.module';
-import { StudentInformationComponent } from './components/student-information/student-information.component';
+
 import {MatChipsModule} from "@angular/material/chips";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {PenaltyChartComponent} from "./components/penalty-chart/penalty-chart.component";
+import {RuleTableComponent} from "./components/rule-table/rule-table.component";
+import {NgChartsModule} from "ng2-charts";
+import {FormDialogComponent} from "./components/form-dialog/form-dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
+
+import {IpTableComponent} from "./components/ip-table/ip-table.component";
+import { DetailInformationComponent } from './components/detail-information/detail-information.component';
 
 
 @NgModule({
@@ -32,34 +40,40 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     AppComponent,
     StudentTableComponent,
     DateTimePickerComponent,
-    StudentInformationComponent
+    IpTableComponent,
+    PenaltyChartComponent,
+    RuleTableComponent,
+    FormDialogComponent,
+    DetailInformationComponent,
   ],
-    imports: [
-        BrowserModule,
-        GraphQLModule,
-        HttpClientModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        MatTableModule,
-        MatListModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatCardModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatSidenavModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        MatSidenavModule,
-        AppRoutingModule,
-        MatChipsModule,
-        MatPaginatorModule,
+  imports: [
+    BrowserModule,
+    GraphQLModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatListModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSidenavModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatSidenavModule,
+    AppRoutingModule,
+    MatChipsModule,
+    MatPaginatorModule,
+    NgChartsModule,
+    MatDialogModule,
 
 
-    ],
+  ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
