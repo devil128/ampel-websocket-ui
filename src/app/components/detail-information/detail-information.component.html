@@ -1,14 +1,14 @@
 <div class="charts">
-  <mat-card id="dailychart">
+  <mat-card id="dailychart" *ngIf="dataset != null">
     <mat-card-title>Tagesablauf</mat-card-title>
-    <mat-card-content>
-      <app-penalty-chart class="time"></app-penalty-chart>
+    <mat-card-content class="time" >
+      <app-penalty-chart [dataSet]="dataset"></app-penalty-chart>
     </mat-card-content>
   </mat-card>
-  <mat-card id="weeklychart">
+  <mat-card id="weeklychart" *ngIf="datasetweek != null">
     <mat-card-title>Wochenablauf</mat-card-title>
-    <mat-card-content>
-      <app-penalty-chart class="time"></app-penalty-chart>
+    <mat-card-content class="time">
+      <app-penalty-chart></app-penalty-chart>
     </mat-card-content>
   </mat-card>
 </div>
@@ -21,5 +21,4 @@
   <mat-card-content>
     <app-packet-log></app-packet-log>
   </mat-card-content>
-
 </mat-card>
