@@ -41,3 +41,9 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="click($event, row)"></tr>
 </table>
 
+<mat-paginator [length]="queryLength"
+               [pageSize]="10"
+               [pageSizeOptions]="[5, 10, 25, 100]"
+               (page)="pageUpdate($event)"
+               aria-label="Select page">
+</mat-paginator>

@@ -19,7 +19,15 @@ export class DetailInformationComponent implements OnInit {
   navigationSubscription;
   penalties: Array<PenaltyUpdate> | null = null;
   dataset: ChartInformation | null = null;
-  datasetweek: ChartInformation | null = null;
+  penalty: PenaltyUpdate = {
+    penalty: 1,
+    timestamp: "1",
+    id: 1,
+    firewallRuleRiskEntryList: [{
+      occurance: 1,
+      firewallRuleRisk: {penalty: 1, id: 1, description: "", sub: "", fwrule: ""}
+    }]
+  };
 
   constructor(private apollo: Apollo, private activatedRoute: ActivatedRoute, private router: Router) {
     this.activatedRoute.paramMap.subscribe((param => {
@@ -77,6 +85,7 @@ export class DetailInformationComponent implements OnInit {
       console.dir(data.data.ip);
       const ipIdent: IpIdent = data.data.ip;
       this.penalties = ipIdent.penalties;
+
       this.updateChart();
     }
   }
@@ -85,11 +94,16 @@ export class DetailInformationComponent implements OnInit {
     const data: Array<number> = [];
     const labels: Array<string> = [];
     if (this.penalties != null) {
-      for (const penaltyUpdate of this.penalties) {
-        console.dir(penaltyUpdate);
+      if (this.penalties.length > 0)
+        this.penalty = this.penalties[0]
+      let penalties = [...this.penalties];
+
+      penalties = penalties.sort((a, b) => Number.parseInt(b.timestamp) - Number.parseInt(a.timestamp))
+      for (const penaltyUpdate of penalties) {
         data.push(penaltyUpdate.penalty);
         const date = new Date(Number.parseInt(penaltyUpdate.timestamp));
-        labels.push();
+        console.dir(date);
+        labels.push("" + date.getDate() + "." + (date.getMonth() + 1));
       }
     }
     this.dataset = {data: [{data: data, stack: "a", label: "Penalties", backgroundColor: "#E91E63"}], labels: labels};

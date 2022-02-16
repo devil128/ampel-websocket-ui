@@ -5,10 +5,10 @@
       <app-penalty-chart [dataSet]="dataset"></app-penalty-chart>
     </mat-card-content>
   </mat-card>
-  <mat-card id="weeklychart" *ngIf="datasetweek != null">
+  <mat-card id="weeklychart" >
     <mat-card-title>Wochenablauf</mat-card-title>
-    <mat-card-content class="time">
-      <app-penalty-chart></app-penalty-chart>
+    <mat-card-content class="cake">
+      <app-cake-chart [dataSet]="penalty"></app-cake-chart>
     </mat-card-content>
   </mat-card>
 </div>

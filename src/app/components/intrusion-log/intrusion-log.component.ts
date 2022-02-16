@@ -85,9 +85,11 @@ export class IntrusionLogComponent implements OnInit {
       variables: {page: page, timeframe: settings}
     }).toPromise();
     console.dir(data.data.iplogsCount)
+
     let logs = [...<IpLogs[]>data.data.ipLogs];
     this.queryLength = data.data.ipLogsCount;
     this.logs = logs;
+    console.dir(data.data.ipLogs)
   }
 
   getDate(timestamp: number): string {

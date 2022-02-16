@@ -36,6 +36,7 @@ import { DetailInformationComponent } from './components/detail-information/deta
 import { IntrusionLogComponent } from './components/intrusion-log/intrusion-log.component';
 import {PacketfilterLogComponent} from "./components/packetfilter-log/packetfilter-log.component";
 import {MatMenuModule} from "@angular/material/menu";
+import { CakeChartComponent } from './components/cake-chart/cake-chart.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {MatMenuModule} from "@angular/material/menu";
     FormDialogComponent,
     DetailInformationComponent,
     IntrusionLogComponent,
-    PacketfilterLogComponent
+    PacketfilterLogComponent,
+    CakeChartComponent
   ],
   imports: [
     BrowserModule,

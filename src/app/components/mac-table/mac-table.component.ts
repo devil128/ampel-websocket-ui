@@ -3,6 +3,7 @@ import {Apollo, gql} from 'apollo-angular';
 import {DateSelectorService} from "../../data/date-selector.service";
 import {Router} from "@angular/router";
 import {MacIdentifier} from "../../data/MacIdent";
+import {PenaltyUpdate} from "../../data/PenaltyUpdate";
 
 @Component({
   selector: 'app-mac-table',
@@ -32,7 +33,7 @@ export class MacTableComponent implements OnInit {
       query: gql`
         {
           macs(page: {from: 0, size: 100}){id,mac,timeStamp,penalties {
-            penalty
+            penalty,timestamp
           }}
         }
       `,
@@ -40,16 +41,26 @@ export class MacTableComponent implements OnInit {
     })
     .valueChanges.subscribe((result: any) => {
       let macIdentifiers = [...<MacIdentifier[]>result.data.macs];
-      macIdentifiers.sort((a, b) => {
-        let aLength = 0;
-        if (a && a.penalties && a.penalties.length > 0) {
-          aLength = a.penalties[0].penalty;
-        }
-        return b && b.penalties && b.penalties.length > 0 ? b.penalties[0].penalty - aLength : 0 - aLength;
-      })
+
 
       this.macIdents = macIdentifiers;
     });
+  }
+
+  private datesAreOnSameDay(first: Date, second: Date) {
+    return first.getFullYear() === second.getFullYear() &&
+      first.getMonth() === second.getMonth() &&
+      first.getDate() === second.getDate();
+  }
+
+  private findToday(macIdent: MacIdentifier): PenaltyUpdate | null {
+    let idx = -1;
+    let today = new Date();
+    for (const penaltyUpdate of macIdent.penalties) {
+      if (this.datesAreOnSameDay(today, new Date(Number.parseInt(penaltyUpdate.timestamp))))
+        return penaltyUpdate;
+    }
+    return null;
   }
 
   click(event: MouseEvent, row: MacIdentifier) {
@@ -61,8 +72,17 @@ export class MacTableComponent implements OnInit {
 
   getPenaltyScore(macIdent: MacIdentifier, timeframeDays: number): number {
     let res = 0;
+    if (timeframeDays === 1) {
+      const find = this.findToday(macIdent);
+      if (find != null) {
+        return find.penalty;
+      } else {
+        return 0;
+      }
+    }
+
     if (macIdent.penalties) {
-      const reverse = macIdent.penalties.reverse();
+      const reverse = [...macIdent.penalties].reverse();
       for (let i = 0; i < timeframeDays && i < reverse.length; i++) {
         res += reverse[i].penalty;
       }
