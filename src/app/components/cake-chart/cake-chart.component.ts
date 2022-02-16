@@ -1,7 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {BaseChartDirective, ThemeService} from "ng2-charts";
-import {ChartInformation} from "../../data/ChartInformation";
-import {ChartConfiguration, ChartData, ChartEvent} from "chart.js";
+import {BaseChartDirective} from "ng2-charts";
+import {ChartConfiguration, ChartData, ChartEvent, Color} from "chart.js";
 import DataLabelsPlugin from "chartjs-plugin-datalabels";
 import {PenaltyUpdate} from "../../data/PenaltyUpdate";
 
@@ -12,25 +11,9 @@ import {PenaltyUpdate} from "../../data/PenaltyUpdate";
 })
 export class CakeChartComponent implements OnInit {
 
-  constructor(themeService: ThemeService) {
-    console.log(themeService.getColorschemesOptions());
-  }
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
-  @Input()
-  set dataSet(dataSet: PenaltyUpdate) {
-    this.data = dataSet;
-    const labels = [];
-    const data = [];
-    for(const fwEntry of dataSet.firewallRuleRiskEntryList){
-      data.push(fwEntry.occurance);
-      labels.push(fwEntry.firewallRuleRisk.description);
-    }
-    this.barChartData = {
-      labels: labels,
-      datasets: [{data: data}]
-    };
-
-  }
+  colors = [{backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"]}];
 
   data: PenaltyUpdate | null = {
     penalty: 10,
@@ -42,31 +25,62 @@ export class CakeChartComponent implements OnInit {
     timestamp: "10"
   }
 
-  ngOnInit(): void {
-  }
-
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-
-  public barChartOptions: ChartConfiguration['options'] = {
-    responsive: false,
-
+  public doughnutChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    layout: {
+      autoPadding: true
+    },
     plugins: {
       legend: {
+        //legend above chart
         display: false,
-
       },
       datalabels: {
-        anchor: 'end',
-        align: 'end',
-        color: 'white',
-      }
-    }
+        //labels right next to chart fields
+        display: false
+      },
+    },
   };
-  public barChartPlugins = [
+
+  public doughnutChartPlugins = [
     DataLabelsPlugin
   ];
 
-  public barChartData: ChartData<'doughnut'> = {labels: ["a"],datasets: [{data: [1]}]};
+  public doughnutChartData: ChartData<'doughnut'> = {
+    labels: ["a"],
+    datasets: [{
+      data: [1],
+      backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"]
+    }],
+  };
+
+  constructor() {
+  }
+
+
+  @Input()
+  set dataSet(dataSet: PenaltyUpdate) {
+    this.data = dataSet;
+    const labels = [];
+    const data = [];
+    for (const fwEntry of dataSet.firewallRuleRiskEntryList) {
+      data.push(fwEntry.occurance);
+      labels.push(fwEntry.firewallRuleRisk.fwrule + " | " + fwEntry.firewallRuleRisk.description);
+    }
+    this.doughnutChartData = {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"],
+        hoverBackgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"],
+        hoverBorderColor: 'white',
+        hoverBorderWidth: 5
+      }]
+    };
+  }
+
+  ngOnInit(): void {
+  }
 
   public chartClicked({event, active}: { event?: ChartEvent, active?: {}[] }): void {
     //console.log(event, active);
@@ -75,4 +89,5 @@ export class CakeChartComponent implements OnInit {
   public chartHovered({event, active}: { event?: ChartEvent, active?: {}[] }): void {
     //console.log(event, active);
   }
+
 }

@@ -1,8 +1,7 @@
-#chart {
-  height: 100%;
-  width: 100%;
-  background-color: #424242;
+div {
+  width: 40em;
 }
-.chart{
-  height: 100%;
+
+canvas {
+  padding: 1em
 }
