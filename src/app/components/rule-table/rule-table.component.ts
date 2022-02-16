@@ -48,7 +48,6 @@ export class RuleTableComponent implements OnInit {
     })
     .valueChanges.subscribe((result: any) => {
       let fwRules = [...<FirewallRuleRisk[]>result.data.fwrules];
-      console.dir(fwRules[0])
       this.rules = fwRules;
       this.rules = this.rules.sort((a, b) => {
         if (a.fwrule === b.fwrule)
@@ -65,6 +64,7 @@ export class RuleTableComponent implements OnInit {
         return a.sub.toLowerCase() >= b.sub.toLowerCase() ? 1 : -1;
       });
     });
+
   }
 
   changeEl(event: MouseEvent, row: FirewallRuleRisk) {
