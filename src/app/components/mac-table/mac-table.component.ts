@@ -72,19 +72,10 @@ export class MacTableComponent implements OnInit {
 
   getPenaltyScore(macIdent: MacIdentifier, timeframeDays: number): number {
     let res = 0;
-    if (timeframeDays === 1) {
-      const find = this.findToday(macIdent);
-      if (find != null) {
-        return find.penalty;
-      } else {
-        return 0;
-      }
-    }
-
-    if (macIdent.penalties) {
-      const reverse = [...macIdent.penalties].reverse();
-      for (let i = 0; i < timeframeDays && i < reverse.length; i++) {
-        res += reverse[i].penalty;
+    if (macIdent.penalties && macIdent.penalties.length > 0) {
+      let penalties =  [...macIdent.penalties].sort((a, b) => Number.parseInt(b.timestamp) - Number.parseInt(a.timestamp));
+      for (let i = 0; i < timeframeDays && i < penalties.length; i++) {
+        res += penalties[i].penalty;
       }
     }
     return res;

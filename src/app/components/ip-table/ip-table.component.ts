@@ -45,13 +45,12 @@ export class IpTableComponent implements OnInit {
     this.query();
     setInterval(() => {
       this.query();
-    }, 10000);
+    }, 5000);
 
   }
 
-  query() {
-    this.apollo
-    .watchQuery({
+  async query() {
+    const result: any = await this.apollo.query({
       query: gql`
         query GETIPLOGS($page: Page){
           ips(page: $page){id,ip,timeStamp,penalties {
@@ -60,14 +59,13 @@ export class IpTableComponent implements OnInit {
           ipsCounts
         }
       `,
-      variables: {"page": <Page>{from: this.page,size: this.pageSize}},
+      variables: {"page": <Page>{from: this.page, size: this.pageSize}},
       fetchPolicy: 'network-only'
-    })
-    .valueChanges.subscribe((result: any) => {
-      let ipIdentData = [...<IpIdent[]>result.data.ips];
-      this.queryLength = result.data.ipsCounts;
-      this.ipIdents = ipIdentData;
-    });
+    }).toPromise();
+    console.dir(result);
+    let ipIdentData = [...<IpIdent[]>result.data.ips];
+    this.queryLength = result.data.ipsCounts;
+    this.ipIdents = ipIdentData;
   }
 
   click(event: MouseEvent, row: IpIdent) {
@@ -81,7 +79,6 @@ export class IpTableComponent implements OnInit {
   }
 
   private findToday(macIdent: IpIdent): PenaltyUpdate | null {
-    let idx = -1;
     let today = new Date();
     for (const penaltyUpdate of macIdent.penalties) {
       if (this.datesAreOnSameDay(today, new Date(Number.parseInt(penaltyUpdate.timestamp))))
@@ -92,18 +89,18 @@ export class IpTableComponent implements OnInit {
 
   getPenaltyScore(ipIdent: IpIdent, timeframeDays: number): number {
     let res = 0;
-    if (timeframeDays === 1) {
+    /*if (timeframeDays === 1) {
       const find = this.findToday(ipIdent);
       if (find != null) {
         return find.penalty;
       } else {
         return 0;
       }
-    }
+    }*/
     if (ipIdent.penalties && ipIdent.penalties.length > 0) {
-      const reverse = [...ipIdent.penalties].reverse();
-      for (let i = 0; i < timeframeDays && i < reverse.length; i++) {
-        res += reverse[i].penalty;
+      let penalties =  [...ipIdent.penalties].sort((a, b) => Number.parseInt(b.timestamp) - Number.parseInt(a.timestamp));
+      for (let i = 0; i < timeframeDays && i < penalties.length; i++) {
+        res += penalties[i].penalty;
       }
     }
     return res;
