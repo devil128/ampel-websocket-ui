@@ -1,19 +1,19 @@
 <div class="charts">
-  <mat-card id="weeklychart" *ngIf="penalty != null">
-    <mat-card-title>Wochenablauf</mat-card-title>
+  <mat-card id="pieChart" *ngIf="penalty != null">
+    <mat-card-title>Regelübersicht</mat-card-title>
     <mat-card-content class="cake">
       <app-cake-chart [dataSet]="penalty"></app-cake-chart>
     </mat-card-content>
   </mat-card>
-  <mat-card id="dailychart" *ngIf="dataset != null">
-    <mat-card-title>Tagesablauf</mat-card-title>
+  <mat-card id="barChart" *ngIf="dataset != null">
+    <mat-card-title>Penaltyscores</mat-card-title>
     <mat-card-content class="time" >
       <app-penalty-chart [dataSet]="dataset"></app-penalty-chart>
     </mat-card-content>
   </mat-card>
 </div>
 <mat-card id="logs">
-  <mat-card-title>Intrusion Detection Logs</mat-card-title>
+  <mat-card-title>Intrusion Prevention Logs</mat-card-title>
   <mat-card-content>
     <app-intrusion-log></app-intrusion-log>
   </mat-card-content>
