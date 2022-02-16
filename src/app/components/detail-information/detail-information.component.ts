@@ -56,7 +56,7 @@ export class DetailInformationComponent implements OnInit {
             mac(mac: $mac){id,mac,timeStamp,penalties { penalty,timestamp,firewallRuleRiskEntryList {
               firewallRuleRisk {
                 penalty,sub,fwrule,description
-              }
+              },occurance
             }
 
             },timeStamp}
@@ -75,7 +75,7 @@ export class DetailInformationComponent implements OnInit {
           query GetIpLogs($ip: String){
             ip(ip: $ip){id,ip,timeStamp,penalties{ penalty,timestamp,firewallRuleRiskEntryList {
               firewallRuleRisk {
-                penalty,sub,fwrule,description}
+                penalty,sub,fwrule,description},occurance
             }}}
           }
         `,
