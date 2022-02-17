@@ -16,6 +16,8 @@ spec:
         - name: vsys-ui-angular
           image: registry.projectdw.de/vsys-ui-angular
           imagePullPolicy: Always
+          ports:
+            - containerPort: 80
           resources:
             requests:
               cpu: "0.20"

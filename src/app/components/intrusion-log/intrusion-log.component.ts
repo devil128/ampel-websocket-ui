@@ -77,7 +77,7 @@ export class IntrusionLogComponent implements OnInit {
     const data: any = await this.apollo.query({
       query: gql`
         query GETIPLOGS($page: Page, $timeframe: Timeframe){
-          ipLogs(page: $page,timeframe: $timeframe){timestamp,id,name,fwrule,srcmac,dstmac,srcip,dstip}
+          ipLogs(page: $page,timeframe: $timeframe){timestamp,id,name,fwrule,srcmac,dstmac,srcip,dstip,created}
           ipLogsCount(timeframe: $timeframe)
         }
       `,

@@ -94,11 +94,10 @@ export class DetailInformationComponent implements OnInit {
     const data: Array<number> = [];
     const labels: Array<string> = [];
     if (this.penalties != null) {
-      if (this.penalties.length > 0)
-        this.penalty = this.penalties[0]
       let penalties = [...this.penalties];
-
-      penalties = penalties.sort((a, b) => Number.parseInt(b.timestamp) - Number.parseInt(a.timestamp))
+      penalties = penalties.sort((a, b) => Number.parseInt(a.timestamp) - Number.parseInt(b.timestamp))
+      if (penalties.length > 0)
+        this.penalty = penalties[penalties.length - 1]
       for (const penaltyUpdate of penalties) {
         data.push(penaltyUpdate.penalty);
         const date = new Date(Number.parseInt(penaltyUpdate.timestamp));

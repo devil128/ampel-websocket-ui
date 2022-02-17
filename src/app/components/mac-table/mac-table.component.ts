@@ -1,9 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
 import {DateSelectorService} from "../../data/date-selector.service";
 import {Router} from "@angular/router";
 import {MacIdentifier} from "../../data/MacIdent";
 import {PenaltyUpdate} from "../../data/PenaltyUpdate";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {MatTable} from "@angular/material/table";
+import {Page} from "../../data/Page";
 
 @Component({
   selector: 'app-mac-table',
@@ -14,6 +17,23 @@ export class MacTableComponent implements OnInit {
   title = 'ampel-ui-websocket';
   displayedColumns: string[] = ['id', 'mac', 'lastupdate', 'penaltyscoretoday', 'penaltyscoreweek'];
   macIdents: Array<MacIdentifier> = []
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+  }
+
+  paginator: MatPaginator | null = null;
+
+  pageSize: number = 10;
+  page: number = 0;
+  queryLength = 100;
+  @ViewChild(MatTable) table: MatTable<any> | null = null;
+
+  pageUpdate(event: PageEvent) {
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.query();
+  }
 
   constructor(private apollo: Apollo, private dateSelector: DateSelectorService, private router: Router) {
     dateSelector.event.subscribe((update) => this.query());
@@ -27,24 +47,26 @@ export class MacTableComponent implements OnInit {
 
   }
 
-  query() {
-    this.apollo
-    .watchQuery({
+  async query() {
+    const result : any= await this.apollo
+    .query({
       query: gql`
-        {
-          macs(page: {from: 0, size: 100}){id,mac,timeStamp,penalties {
+        query getMacLogs($page: Page){
+          macs(page: $page){id,mac,timeStamp,penalties {
             penalty,timestamp
           }}
+          macsCount
         }
       `,
+      variables: {"page": <Page>{from: this.page, size: this.pageSize}},
       fetchPolicy: 'network-only'
     })
-    .valueChanges.subscribe((result: any) => {
+    .toPromise()
       let macIdentifiers = [...<MacIdentifier[]>result.data.macs];
-
+      this.queryLength = result.data.macsCount
 
       this.macIdents = macIdentifiers;
-    });
+
   }
 
   private datesAreOnSameDay(first: Date, second: Date) {

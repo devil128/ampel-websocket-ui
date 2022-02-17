@@ -9,15 +9,21 @@ metadata:
     #nginx.ingress.kubernetes.io/rewrite-target: /
 
 spec:
-  ingressClassName: nginx-example
+
   rules:
     - http:
         paths:
-          - path: /testpath
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: test
+                name: vsys-ui-angular-service
                 port:
                   number: 80
-
+          - path: /graphql
+            pathType: Prefix
+            backend:
+              service:
+                name: graph-vsys-vis-prod-service
+                port:
+                  number: 8080
